@@ -1,8 +1,10 @@
-import { BoardState, TrelloActionTypes } from "../types";
+import { BoardState } from "../types";
 import { AnyAction } from 'redux';
 
 export function setBoardReducer(currentState: BoardState, action: AnyAction) {
-    return Object.assign({}, currentState, {boards: currentState.boards, selectedBoard: action.payload.board, showBoards: false,
+    const boards = currentState.boards || [];
+    const currentBoard = boards.filter(i => i.id === action.payload.boardId)[0];
+    return Object.assign({}, currentState, {boards: currentState.boards, selectedBoard: currentBoard, showBoards: false,
         showLists: true, error:''});
 }
 

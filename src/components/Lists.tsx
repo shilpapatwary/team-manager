@@ -53,7 +53,7 @@ class Lists  extends Component<ListsProps, ListsState> {
             </div>
             <div className="boardLists">
                 {
-                this.state.lists.map( (list, index) => {
+                this.props.lists && this.props.lists.map( (list, index) => {
                         return  <List key={index} list={list} moveList={this.props.moveList} moveCard={this.props.moveCard} addCardToList={this.props.addCardToList} editListName={this.props.editListName} editCardName={this.props.editCardName}></List>
                     })
                 }      

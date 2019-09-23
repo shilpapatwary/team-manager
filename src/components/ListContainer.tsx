@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import Lists from './Lists';
-import {BoardData, ListData, BoardState, CardData} from '../types';
-import {addCardAction, addListAction, moveCardAction, moveListAction, editCardAction, editListAction, setCurrentViewAction} from '../actions';
+import { BoardData, ListData, BoardState, CardData } from '../types';
+import { addCardAction, addListAction, moveCardAction, moveListAction, editCardAction, editListAction, setCurrentViewAction, setBoardAction } from '../actions';
 import { connect } from 'react-redux';
-import {Dispatch} from 'redux';
-
+import { Dispatch } from 'redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import Layout from './Layout';
+import ListsHome from './ListsHome';
 interface ListContainerProps{
     board?: BoardData,
     showBoards: any,
@@ -13,25 +16,29 @@ interface ListContainerProps{
     onlistNameEdited: any,
     editCardName: any,
     moveCard: any,
-    moveList: any
+    moveList: any,
+    match: any,
+    setCurrentBoard : any
 }
 
 export class ListContainer  extends Component<ListContainerProps, any> {
     constructor(props: ListContainerProps) {
         super(props);
     }
-
+    componentDidMount() {
+        const { match: { params } } = this.props;
+        this.props.setCurrentBoard(params.id)
+    }
     render() {
-      return this.props.board ? (
-        <section id='Lists'>
-            <section className="breadcrumb">
-                <span id="linkBoards" onClick={this.props.showBoards}>Back to boards</span>
-            </section>
-            <section id={this.props.board.id} className="listSection">
-                <Lists lists={this.props.board.lists} addCardToList={this.props.addCardToList} moveList={this.props.moveList} addListToBoard={this.props.onAddList} editListName={this.props.onlistNameEdited} editCardName={this.props.editCardName} moveCard={this.props.moveCard}></Lists> 
-            </section>
-    </section>
-      ) : <div>Loading...</div>;
+        return this.props.board ? (
+            <Layout component={<ListsHome board={this.props.board}
+                addCardToList={this.props.addCardToList}
+                onAddList={this.props.onAddList}
+                onlistNameEdited={this.props.onlistNameEdited}
+                editCardName={this.props.editCardName}
+                moveCard={this.props.moveCard}
+                moveList={this.props.moveList}></ListsHome>}></Layout>
+        ) : <div>Loading...</div>;
     }
   }
   
@@ -48,7 +55,8 @@ export class ListContainer  extends Component<ListContainerProps, any> {
         onlistNameEdited: (listId: String, listName: String) => {dispatch(editListAction(listId, listName))},
         editCardName: (listId: String, cardId:String, name: String) => {dispatch(editCardAction(listId, cardId, name))},
         moveCard: (listId: string, cardId: string, index: number) => {dispatch(moveCardAction(listId, cardId,index))},
-        showBoards: () => {dispatch(setCurrentViewAction(true, false))}
+        showBoards: () => {dispatch(setCurrentViewAction(true, false))},
+        setCurrentBoard: (id: string) => {dispatch(setBoardAction(id))}
     }
   }
   export default connect (mapStateToProps, mapDispatchToProps) (ListContainer);

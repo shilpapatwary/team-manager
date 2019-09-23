@@ -1,4 +1,4 @@
-import { BoardState, TrelloActionTypes } from "../types";
+import { BoardState } from "../types";
 import { AnyAction } from 'redux';
 
 export function addListReducer(currentState: BoardState , action: AnyAction) {

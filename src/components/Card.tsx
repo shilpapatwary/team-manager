@@ -1,7 +1,8 @@
 /* eslint-disable no-dupe-class-members */
 import React, { Component } from 'react';
 import {CardData} from '../types';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 interface cardProps{
     card: CardData,
     editCardName: any,
@@ -41,7 +42,7 @@ class Card  extends Component<cardProps, cardState> {
       return (
         <div className="card">
             <span className="cardTitle"><input type='text' value={this.state.cardName} onKeyDown={this.editCardName} onChange={this.setCardName} /></span>
-            <span className="moveCard" onClick={this.moveCard}>&#8595;</span>
+            <span className="moveCard" onClick={this.moveCard}><FontAwesomeIcon icon={faArrowDown}></FontAwesomeIcon></span>
       </div>
       );
     }

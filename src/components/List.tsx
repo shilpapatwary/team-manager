@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Card from './Card';
 import {ListData, CardData} from '../types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 interface ListProps{
     list: ListData,
@@ -20,12 +22,7 @@ interface ListState{
 class List  extends Component<ListProps, ListState> {
     constructor(props: ListProps) {
         super(props);
-        this.state = {
-            list: props.list,
-            listName: props.list.name,
-            listId: props.list.id,
-            cards: props.list.cards
-        }
+        
         this.addCardToList = this.addCardToList.bind(this);
         this.editListName = this.editListName.bind(this);
         this.setListName = this.setListName.bind(this);
@@ -35,7 +32,7 @@ class List  extends Component<ListProps, ListState> {
     }
 
     addCardToList(event: any) {
-        this.props.addCardToList(this.state.list.id, {
+        this.props.addCardToList(this.props.list.id, {
             id: `${Math.floor(Math.random() * 100000)}`,
             name: ' sample card'
         });
@@ -47,34 +44,34 @@ class List  extends Component<ListProps, ListState> {
 
     editListName(event: React.KeyboardEvent<HTMLInputElement>) {
         if(event.keyCode === 13) {
-            this.props.editListName(this.state.list.id, this.state.listName);
+            this.props.editListName(this.props.list.id, this.state.listName);
         }
     }
 
     editCardName(cid: string, name: string) {
-        this.props.editCardName(this.state.list.id, cid, name);
+        this.props.editCardName(this.props.list.id, cid, name);
     }
 
     moveCard(cardId: string,index: number) {
-        this.props.moveCard(this.state.listId, cardId, index);
+        this.props.moveCard(this.props.list.id, cardId, index);
     }
 
     moveList() {
-        this.props.moveList(this.state.listId, this.state.list.index);
+        this.props.moveList(this.props.list.id, this.props.list.index);
     }
     render() {
       return (
-        <div id={this.state.listId} className="list">
-                                    <div className="listHeader"><input  className="listTitle" type='text' value={this.state.listName} onChange={this.setListName} onKeyDown={this.editListName}/>
-                                    <span className="moveList" onClick={this.moveList}>&#8594;</span>
-                                    </div>
-                                    <div className="cards">{
-                                        this.state.cards ? this.state.cards.map( (card) => {
-                                            return <Card card={card} key={card.id} moveCard={this.moveCard} editCardName={this.editCardName}></Card>
-                                        }) : <h2>loading...</h2>
-                                    }</div>
-                                    <div className="addCard" onClick={this.addCardToList}>+ Add card</div>
-                                </div>
+          <div id={this.props.list.id} className="list">
+              <div className="listHeader"><input className="listTitle" type='text' value={this.props.list.name} onChange={this.setListName} onKeyDown={this.editListName} />
+                  <span className="moveList" onClick={this.moveList}><FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon></span>
+              </div>
+              <div className="cards">{
+                  this.props.list.cards ? this.props.list.cards.map((card) => {
+                      return <Card card={card} key={card.id} moveCard={this.moveCard} editCardName={this.editCardName}></Card>
+                  }) : <h2>loading...</h2>
+              }</div>
+              <div className="addCard" onClick={this.addCardToList}><FontAwesomeIcon icon={faPlusSquare}></FontAwesomeIcon> Add card</div>
+          </div>
       );
     }
   }
