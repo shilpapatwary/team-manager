@@ -1,13 +1,14 @@
 {
-  "main.css": "/team-manager/static/css/main.b25e862d.chunk.css",
-  "main.js": "/team-manager/static/js/main.41b21d29.chunk.js",
-  "main.js.map": "/team-manager/static/js/main.41b21d29.chunk.js.map",
-  "static/js/1.7375ede0.chunk.js": "/team-manager/static/js/1.7375ede0.chunk.js",
-  "static/js/1.7375ede0.chunk.js.map": "/team-manager/static/js/1.7375ede0.chunk.js.map",
+  "main.css": "/team-manager/static/css/main.90063179.chunk.css",
+  "main.js": "/team-manager/static/js/main.72cc3b41.chunk.js",
+  "main.js.map": "/team-manager/static/js/main.72cc3b41.chunk.js.map",
+  "static/js/1.20c2bdd3.chunk.js": "/team-manager/static/js/1.20c2bdd3.chunk.js",
+  "static/js/1.20c2bdd3.chunk.js.map": "/team-manager/static/js/1.20c2bdd3.chunk.js.map",
   "runtime~main.js": "/team-manager/static/js/runtime~main.59f89c75.js",
   "runtime~main.js.map": "/team-manager/static/js/runtime~main.59f89c75.js.map",
-  "static/css/main.b25e862d.chunk.css.map": "/team-manager/static/css/main.b25e862d.chunk.css.map",
+  "static/media/collaboration.jpg": "/team-manager/static/media/collaboration.36a91308.jpg",
+  "static/css/main.90063179.chunk.css.map": "/team-manager/static/css/main.90063179.chunk.css.map",
   "index.html": "/team-manager/index.html",
-  "precache-manifest.cabed3962982758435057bbc589d3402.js": "/team-manager/precache-manifest.cabed3962982758435057bbc589d3402.js",
+  "precache-manifest.f74a448c0ea8d4b9d71bc9ecdbba8d05.js": "/team-manager/precache-manifest.f74a448c0ea8d4b9d71bc9ecdbba8d05.js",
   "service-worker.js": "/team-manager/service-worker.js"
 }
